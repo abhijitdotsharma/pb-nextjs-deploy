@@ -1,3 +1,9 @@
 {
-  "extends": ["next", "prettier"]
+  "extends": ["next", "prettier"],
+  "globals": {
+    "React": "readonly"
+  },
+  "rules": {
+    "no-unused-vars": "warn"
+  }
 }
