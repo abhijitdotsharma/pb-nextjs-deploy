@@ -1,5 +1,5 @@
 import connectDB from "@/lib/connect-db";
-import { NextApiRequest } from "next/types";
+import { NextApiRequest } from 'next'
 
 connectDB();
 
