@@ -1,8 +1,10 @@
 import connectDB from "@/lib/connect-db";
-import { NextApiRequest } from 'next'
+import { NextResponse } from "next/server";
 
 connectDB();
 
-export async function GET(Request: NextApiRequest) {
-    return new Response("This is a new API route");
+
+export async function GET(request : Request) {
+  // Do whatever you want
+  return NextResponse.json({ message: "Hello World" }, { status: 200 });
 }

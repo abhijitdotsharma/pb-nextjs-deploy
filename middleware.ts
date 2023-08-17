@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
  * @param req 
  * @returns 
  */
-export default function middleware(req) {
+export default function middleware(req: Request) {
    
     const time = Date.now()
     const timeStr = new Date(time).toLocaleDateString();
