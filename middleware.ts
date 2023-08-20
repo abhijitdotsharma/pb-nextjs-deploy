@@ -1,20 +1,34 @@
 import { NextResponse } from "next/server";
-/**
- *
- * @param req
- * @returns
- */
+import type { NextRequest } from "next/server";
 
-export { default } from "next-auth/middleware";
+export function middleware(request: NextRequest) {
+  const path = request.nextUrl.pathname;
 
-// export function middleware(req: Request) {
-//   const time = Date.now();
-//   const timeStr = new Date(time).toLocaleDateString();
+  console.log("middleware: path", path);
 
-//   const logData = {
-//     time: timeStr,
-//     url: req.url,
-//   };
-//   // console.log('logData', logData)
-//   return NextResponse.next();
-// }
+  const isPublicPath =
+    path === "/signup" || path === "/verifyemail" || path === "/login";
+
+  const token = request.cookies.get("token")?.value || "";
+  console.log("token - ", token);
+
+  if (isPublicPath && token) {
+    return NextResponse.redirect(new URL("/", request.nextUrl));
+  }
+
+  if (!isPublicPath && !token) {
+    return NextResponse.redirect(new URL("/login", request.nextUrl));
+  }
+}
+
+export const config = {
+  matcher: ["/", "/any", "/dashboard"],
+};
+/*
+  // Ideally there should be a regex in matcher that catches all routes and is private except /verifyemail
+  // currently there is a bug in next, that doesnt allow the css to be loaded when that is done.
+    export const config = { 
+      matcher: "/((?!verifyemail).*)"
+    }
+  // refer to this - https://stackoverflow.com/a/73229290
+  */
