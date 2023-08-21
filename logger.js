@@ -10,26 +10,9 @@ export default pino(
     level: "error",
     timestamp: pino.stdTimeFunctions.isoTime,
     node_version: process.version,
-    // transport: [
-    //   {
-    //     level: "error",
-    //     type: "file",
-    filename: "/var/log/nextjs.log",
-    //   },
-    // ],
   },
   fileTransport
 );
-
-// ({
-//     level: 'info',
-//     transports: [{
-//         level: 'info',
-//         type: 'file',
-//         filename: '/var/logs/nextjs.log',
-//         format: pino.stdSerializer(),
-//       },],
-// })
 
 /**
  * To use
