@@ -2,7 +2,7 @@ import pino from "pino";
 
 const fileTransport = pino.transport({
   target: "pino/file",
-  options: { destination: `${__dirname}/app.log` },
+  options: { destination: `/var/log/nextapp/error.log` },
 });
 
 export default pino(
@@ -14,7 +14,7 @@ export default pino(
     //   {
     //     level: "error",
     //     type: "file",
-    //     filename: "/var/logs/nextjs.log",
+    filename: "/var/log/nextjs.log",
     //   },
     // ],
   },

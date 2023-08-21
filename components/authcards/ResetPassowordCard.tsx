@@ -14,25 +14,26 @@ import {
 import { Input } from "@/components/ui/input";
 import { SkeletonDemo } from "./AuthSkeleton";
 import { Label } from "@radix-ui/react-label";
-import { Checkbox } from "@radix-ui/react-checkbox";
 
-export function VerifyEmailCard({
+export function ResetPasswordCard({
   password,
   setPassword,
   confirmPassword,
   setConfirmPassword,
-  verifyUserEmail,
+  resetPassword,
   loading,
 }) {
   const [passwordsMismatch, setPasswordsMismatch] = React.useState(false);
   const [passwordType, setPasswordType] = React.useState("password");
 
-  function comparePasswordsAndVerifyEmail() {
+  function compareAndUpdatePasswords() {
     if (password !== confirmPassword) {
       setPasswordsMismatch(true);
+      setPassword("");
+      setConfirmPassword("");
       return;
     }
-    verifyUserEmail();
+    resetPassword();
   }
 
   function togglePassword() {
@@ -46,7 +47,7 @@ export function VerifyEmailCard({
   return (
     <Card className="w-[350px]">
       <CardHeader>
-        <CardTitle>{loading ? "Loading..." : "Verify your account"}</CardTitle>
+        <CardTitle>{loading ? "Loading..." : "Update Password"}</CardTitle>
         <CardDescription>
           Update your password and click on verify
         </CardDescription>
@@ -93,7 +94,7 @@ export function VerifyEmailCard({
             </div>
           </CardContent>
           <CardFooter>
-            <Button onClick={comparePasswordsAndVerifyEmail}>Verify</Button>
+            <Button onClick={compareAndUpdatePasswords}>Submit</Button>
           </CardFooter>
         </>
       )}

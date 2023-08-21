@@ -11,16 +11,20 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import Link from "next/link";
 import { SkeletonDemo } from "./AuthSkeleton";
 
-export function LoginCard({ user, setUser, onLogin, loading }) {
+export function ForgotPasswordCard({
+  user,
+  setUser,
+  getEmail,
+  emailSent,
+  loading,
+}) {
   console.log("from pages, user", user);
-
   return (
     <Card className="w-[350px]">
       <CardHeader>
-        <CardTitle>{loading ? "Processing" : "Login"}</CardTitle>
+        <CardTitle>{loading ? "Loading..." : "Enter Email"}</CardTitle>
       </CardHeader>
       {loading ? (
         <CardContent>
@@ -34,20 +38,9 @@ export function LoginCard({ user, setUser, onLogin, loading }) {
                 <Label htmlFor="name">Email</Label>
                 <Input
                   id="name"
-                  placeholder="Enter Email"
+                  type="email"
                   value={user.email}
                   onChange={(e) => setUser({ ...user, email: e.target.value })}
-                />
-              </div>
-              <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="name">Password</Label>
-                <Input
-                  id="name"
-                  placeholder="Enter Password"
-                  value={user.password}
-                  onChange={(e) =>
-                    setUser({ ...user, password: e.target.value })
-                  }
                 />
               </div>
             </div>
@@ -55,13 +48,9 @@ export function LoginCard({ user, setUser, onLogin, loading }) {
           <CardFooter
             style={{ display: "flex", justifyContent: "space-between" }}
           >
-            <Button onClick={onLogin}>Submit</Button>
-            <Link
-              href="/forgotpassword"
-              className="px-4 py-2 text-black-100 no-underline rounded hover:underline hover:text-black-200"
-            >
-              Forgot Password ?
-            </Link>
+            <Button disabled={emailSent} onClick={getEmail}>
+              Submit
+            </Button>
           </CardFooter>
         </>
       )}

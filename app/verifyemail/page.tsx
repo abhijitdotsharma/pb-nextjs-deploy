@@ -13,6 +13,7 @@ export default function VerifyEmailPage() {
   const [token, setToken] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const verifyUserEmail = async () => {
     //hash password
@@ -20,17 +21,22 @@ export default function VerifyEmailPage() {
     const newPassword = await bcryptjs.hash(password, salt);
 
     try {
+      setLoading(true);
       const response = await axios.post("/api/users/verifyemail", {
         token,
         newPassword,
       });
-
+      toast.success("Email Verified login now");
+      setPassword("");
+      setConfirmPassword("");
       console.log("res", response);
     } catch (error: any) {
       console.log("err", error);
       setPassword("");
       const msg = error.response.data.error;
       toast.error(msg);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -49,6 +55,7 @@ export default function VerifyEmailPage() {
         confirmPassword={confirmPassword}
         setConfirmPassword={setConfirmPassword}
         verifyUserEmail={verifyUserEmail}
+        loading={loading}
       />
       <Toaster />
     </div>
