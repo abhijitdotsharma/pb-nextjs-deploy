@@ -26,34 +26,24 @@ export function ForgotPasswordCard({
       <CardHeader>
         <CardTitle>{loading ? "Loading..." : "Enter Email"}</CardTitle>
       </CardHeader>
-      {loading ? (
-        <CardContent>
-          <SkeletonDemo />
-        </CardContent>
-      ) : (
-        <>
-          <CardContent>
-            <div className="grid w-full items-center gap-4">
-              <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="name">Email</Label>
-                <Input
-                  id="name"
-                  type="email"
-                  value={user.email}
-                  onChange={(e) => setUser({ ...user, email: e.target.value })}
-                />
-              </div>
-            </div>
-          </CardContent>
-          <CardFooter
-            style={{ display: "flex", justifyContent: "space-between" }}
-          >
-            <Button disabled={emailSent} onClick={getEmail}>
-              Submit
-            </Button>
-          </CardFooter>
-        </>
-      )}
+      <CardContent>
+        <div className="grid w-full items-center gap-4">
+          <div className="flex flex-col space-y-1.5">
+            <Label htmlFor="name">Email</Label>
+            <Input
+              id="name"
+              type="email"
+              value={user.email}
+              onChange={(e) => setUser({ ...user, email: e.target.value })}
+            />
+          </div>
+        </div>
+      </CardContent>
+      <CardFooter style={{ display: "flex", justifyContent: "space-between" }}>
+        <Button disabled={emailSent} onClick={getEmail}>
+          {loading ? "Loading..." : "Submit"}
+        </Button>
+      </CardFooter>
     </Card>
   );
 }

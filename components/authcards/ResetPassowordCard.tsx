@@ -14,6 +14,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { SkeletonDemo } from "./AuthSkeleton";
 import { Label } from "@radix-ui/react-label";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 export function ResetPasswordCard({
   password,
@@ -25,12 +26,12 @@ export function ResetPasswordCard({
 }) {
   const [passwordsMismatch, setPasswordsMismatch] = React.useState(false);
   const [passwordType, setPasswordType] = React.useState("password");
+  const [confirmPasswordType, setConfirmPasswordType] =
+    React.useState("password");
 
   function compareAndUpdatePasswords() {
     if (password !== confirmPassword) {
       setPasswordsMismatch(true);
-      setPassword("");
-      setConfirmPassword("");
       return;
     }
     resetPassword();
@@ -44,6 +45,14 @@ export function ResetPasswordCard({
     setPasswordType("password");
   }
 
+  function toggleConfirmPassword() {
+    if (confirmPasswordType === "password") {
+      setConfirmPasswordType("text");
+      return;
+    }
+    setConfirmPasswordType("password");
+  }
+
   return (
     <Card className="w-[350px]">
       <CardHeader>
@@ -52,52 +61,81 @@ export function ResetPasswordCard({
           Update your password and click on verify
         </CardDescription>
       </CardHeader>
-      {loading ? (
-        <CardContent>
-          <SkeletonDemo />
-        </CardContent>
-      ) : (
-        <>
-          <CardContent>
-            <div className="grid w-full items-center gap-4">
-              <div className="flex flex-col space-y-1.5">
-                <Input
-                  id="name"
-                  placeholder="Enter new password"
-                  type={passwordType}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </div>
-              <div className="flex flex-col space-y-1.5">
-                <Input
-                  id="name"
-                  placeholder="Confirm new password"
-                  type={passwordType}
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                />
-              </div>
-
-              <Label onClick={togglePassword}>
-                <input
-                  type="checkbox"
-                  checked={passwordType === "text"}
-                  style={{ marginRight: "4px" }}
-                />
-                Show Password
-              </Label>
-
-              {passwordsMismatch ? (
-                <p>Passwords dont match, try again</p>
-              ) : null}
+      <CardContent>
+        <div className="grid w-full items-center gap-4">
+          <div className="flex flex-row space-y-1.5">
+            <div>
+              <Input
+                id="name"
+                placeholder="Enter new password"
+                type={passwordType}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </div>
-          </CardContent>
-          <CardFooter>
-            <Button onClick={compareAndUpdatePasswords}>Submit</Button>
-          </CardFooter>
-        </>
-      )}
+            <div>
+              {passwordType === "password" ? (
+                <AiOutlineEye
+                  style={{
+                    position: "relative",
+                    marginLeft: "2px",
+                    marginTop: "8px",
+                  }}
+                  onClick={togglePassword}
+                />
+              ) : (
+                <AiOutlineEyeInvisible
+                  style={{
+                    position: "relative",
+                    marginLeft: "2px",
+                    marginTop: "8px",
+                  }}
+                  onClick={togglePassword}
+                />
+              )}
+            </div>
+          </div>
+          <div className="flex flex-row space-y-1.5">
+            <div>
+              <Input
+                id="name"
+                placeholder="Confirm new password"
+                type={confirmPasswordType}
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              />
+            </div>
+            <div>
+              {confirmPasswordType === "password" ? (
+                <AiOutlineEye
+                  style={{
+                    position: "relative",
+                    marginLeft: "2px",
+                    marginTop: "8px",
+                  }}
+                  onClick={toggleConfirmPassword}
+                />
+              ) : (
+                <AiOutlineEyeInvisible
+                  style={{
+                    position: "relative",
+                    marginLeft: "2px",
+                    marginTop: "8px",
+                  }}
+                  onClick={toggleConfirmPassword}
+                />
+              )}
+            </div>
+          </div>
+
+          {passwordsMismatch ? <p> Passwords dont match, try again </p> : ""}
+        </div>
+      </CardContent>
+      <CardFooter>
+        <Button onClick={compareAndUpdatePasswords}>
+          {loading ? "Loading..." : "Submit"}
+        </Button>
+      </CardFooter>
     </Card>
   );
 }
