@@ -15,6 +15,7 @@ import Link from "next/link";
 
 export function LoginCard({ user, setUser, onLogin }) {
   console.log("from pages, user", user);
+
   return (
     <Card className="w-[350px]">
       <CardHeader>

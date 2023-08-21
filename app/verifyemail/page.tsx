@@ -6,12 +6,13 @@ import axios from "axios";
 import Link from "next/link";
 import bcryptjs from "bcryptjs";
 import React, { useEffect, useState } from "react";
-import { VerifyEmailCard } from "@/components/VerifyEmailCard";
+import { VerifyEmailCard } from "@/components/authcards/VerifyEmailCard";
 import toast, { Toaster } from "react-hot-toast";
 
 export default function VerifyEmailPage() {
   const [token, setToken] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const verifyUserEmail = async () => {
     //hash password
@@ -45,6 +46,8 @@ export default function VerifyEmailPage() {
       <VerifyEmailCard
         password={password}
         setPassword={setPassword}
+        confirmPassword={confirmPassword}
+        setConfirmPassword={setConfirmPassword}
         verifyUserEmail={verifyUserEmail}
       />
       <Toaster />

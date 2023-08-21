@@ -3,7 +3,7 @@ import Link from "next/link";
 import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import { LoginCard } from "@/components/LoginCard";
+import { LoginCard } from "@/components/authcards/LoginCard";
 import toast, { Toaster } from "react-hot-toast";
 
 export default function LoginPage() {
