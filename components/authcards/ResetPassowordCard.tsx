@@ -34,23 +34,6 @@ export function ResetPasswordCard({
     resetPassword();
   }
 
-  function togglePassword() {
-    if (passwordType === "password") {
-      setPasswordType("text");
-      return;
-    }
-    setPasswordType("password");
-  }
-
-  function toggleConfirmPassword() {
-    console.log("I am called");
-    if (confirmPasswordType === "password") {
-      setConfirmPasswordType("text");
-      return;
-    }
-    setConfirmPasswordType("password");
-  }
-
   return (
     <Card className="w-[350px]">
       <CardHeader>
@@ -65,13 +48,13 @@ export function ResetPasswordCard({
             password={password}
             setPassword={setPassword}
             passwordType={passwordType}
-            togglePassword={togglePassword}
+            setPasswordType={setPasswordType}
           />
           <InputWithToggle
             password={confirmPassword}
             setPassword={setConfirmPassword}
             passwordType={confirmPasswordType}
-            togglePassword={toggleConfirmPassword}
+            setPasswordType={setConfirmPasswordType}
           />
           {passwordsMismatch ? <p> Passwords dont match, try again </p> : ""}
         </div>

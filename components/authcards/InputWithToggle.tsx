@@ -7,8 +7,15 @@ export default function InputWithToggle({
   password,
   setPassword,
   passwordType,
-  togglePassword,
+  setPasswordType,
 }) {
+  function togglePassword() {
+    if (passwordType === "password") {
+      setPasswordType("text");
+      return;
+    }
+    setPasswordType("password");
+  }
   return (
     <div className="flex flex-row space-y-1.5">
       <div>
