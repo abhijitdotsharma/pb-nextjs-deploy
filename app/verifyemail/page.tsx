@@ -55,7 +55,7 @@ export default function VerifyEmailPage() {
     // without saving the user as verified, which has to be used on update password logic
     const preVerify = "pageload";
     try {
-      const response = await axios.post("/api/users/resetpassword", {
+      const response = await axios.post("/api/users/verifyemail", {
         token,
         newPassword,
         preVerify,
