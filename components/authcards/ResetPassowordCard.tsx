@@ -11,10 +11,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { SkeletonDemo } from "./AuthSkeleton";
-import { Label } from "@radix-ui/react-label";
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import InputWithToggle from "./InputWithToggle";
 
 export function ResetPasswordCard({
   password,
@@ -46,6 +43,7 @@ export function ResetPasswordCard({
   }
 
   function toggleConfirmPassword() {
+    console.log("I am called");
     if (confirmPasswordType === "password") {
       setConfirmPasswordType("text");
       return;
@@ -63,71 +61,18 @@ export function ResetPasswordCard({
       </CardHeader>
       <CardContent>
         <div className="grid w-full items-center gap-4">
-          <div className="flex flex-row space-y-1.5">
-            <div>
-              <Input
-                id="name"
-                placeholder="Enter new password"
-                type={passwordType}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-            <div>
-              {passwordType === "password" ? (
-                <AiOutlineEye
-                  style={{
-                    position: "relative",
-                    marginLeft: "2px",
-                    marginTop: "8px",
-                  }}
-                  onClick={togglePassword}
-                />
-              ) : (
-                <AiOutlineEyeInvisible
-                  style={{
-                    position: "relative",
-                    marginLeft: "2px",
-                    marginTop: "8px",
-                  }}
-                  onClick={togglePassword}
-                />
-              )}
-            </div>
-          </div>
-          <div className="flex flex-row space-y-1.5">
-            <div>
-              <Input
-                id="name"
-                placeholder="Confirm new password"
-                type={confirmPasswordType}
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-              />
-            </div>
-            <div>
-              {confirmPasswordType === "password" ? (
-                <AiOutlineEye
-                  style={{
-                    position: "relative",
-                    marginLeft: "2px",
-                    marginTop: "8px",
-                  }}
-                  onClick={toggleConfirmPassword}
-                />
-              ) : (
-                <AiOutlineEyeInvisible
-                  style={{
-                    position: "relative",
-                    marginLeft: "2px",
-                    marginTop: "8px",
-                  }}
-                  onClick={toggleConfirmPassword}
-                />
-              )}
-            </div>
-          </div>
-
+          <InputWithToggle
+            password={password}
+            setPassword={setPassword}
+            passwordType={passwordType}
+            togglePassword={togglePassword}
+          />
+          <InputWithToggle
+            password={confirmPassword}
+            setPassword={setConfirmPassword}
+            passwordType={confirmPasswordType}
+            togglePassword={toggleConfirmPassword}
+          />
           {passwordsMismatch ? <p> Passwords dont match, try again </p> : ""}
         </div>
       </CardContent>

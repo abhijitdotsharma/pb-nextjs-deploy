@@ -11,11 +11,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { SkeletonDemo } from "./AuthSkeleton";
-import { Label } from "@radix-ui/react-label";
-import { Checkbox } from "@radix-ui/react-checkbox";
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import InputWithToggle from "./InputWithToggle";
 
 export function VerifyEmailCard({
   password,
@@ -63,7 +59,7 @@ export function VerifyEmailCard({
       </CardHeader>
       <CardContent>
         <div className="grid w-full items-center gap-4">
-          <div className="flex flex-row space-y-1.5">
+          {/* <div className="flex flex-row space-y-1.5">
             <div>
               <Input
                 id="name"
@@ -126,7 +122,19 @@ export function VerifyEmailCard({
                 />
               )}
             </div>
-          </div>
+          </div> */}
+          <InputWithToggle
+            password={password}
+            setPassword={setPassword}
+            passwordType={passwordType}
+            togglePassword={togglePassword}
+          />
+          <InputWithToggle
+            password={confirmPassword}
+            setPassword={setConfirmPassword}
+            passwordType={confirmPasswordType}
+            togglePassword={toggleConfirmPassword}
+          />
 
           {passwordsMismatch ? <p>Passwords dont match, try again</p> : null}
         </div>
