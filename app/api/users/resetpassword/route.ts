@@ -7,7 +7,7 @@ connect();
 export async function POST(request: NextRequest) {
   try {
     const reqBody = await request.json();
-    const { token, newPassword } = reqBody;
+    const { token, newPassword, preVerify } = reqBody;
 
     console.log(token);
 
@@ -26,6 +26,13 @@ export async function POST(request: NextRequest) {
         { error: "Token expired, please signup again" },
         { status: 400 }
       );
+    }
+
+    if (preVerify === "pageload") {
+      return NextResponse.json({
+        message: "Verify email page can be loaded successfully",
+        success: true,
+      });
     }
 
     console.log(user);
