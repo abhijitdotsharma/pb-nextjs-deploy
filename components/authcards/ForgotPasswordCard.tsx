@@ -22,17 +22,17 @@ export function ForgotPasswordCard({
 }) {
   console.log("from pages, user", user);
   return (
-    <Card className="w-[350px]">
-      <CardHeader>
+    <Card className="pb-8">
+      <CardHeader className="py-8">
         <CardTitle>{loading ? "Loading..." : "Enter Email"}</CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="py-8">
         <div className="grid w-full items-center gap-4">
           <div className="flex flex-col space-y-1.5">
-            <Label htmlFor="name">Email</Label>
             <Input
               id="name"
               type="email"
+              placeholder="Type your email here"
               value={user.email}
               onChange={(e) => setUser({ ...user, email: e.target.value })}
             />

@@ -18,17 +18,14 @@ export function LoginCard({ user, setUser, onLogin, loading }) {
   console.log("from pages, user", user);
 
   return (
-    <Card className="w-[350px]">
-      <CardHeader>
-        <CardTitle>{loading ? "Processing" : "Login"}</CardTitle>
-      </CardHeader>
-      <CardContent>
+    <Card>
+      <CardContent className="py-8">
         <div className="grid w-full items-center gap-4">
-          <div className="flex flex-col space-y-1.5">
+          <div className="flex flex-col space-y-1.5 py-4">
             <Label htmlFor="name">Email</Label>
             <Input
               id="name"
-              placeholder="Enter Email"
+              // placeholder="Enter Email"
               value={user.email}
               onChange={(e) => setUser({ ...user, email: e.target.value })}
             />
@@ -37,7 +34,7 @@ export function LoginCard({ user, setUser, onLogin, loading }) {
             <Label htmlFor="name">Password</Label>
             <Input
               id="name"
-              placeholder="Enter Password"
+              // placeholder="Enter Password"
               value={user.password}
               onChange={(e) => setUser({ ...user, password: e.target.value })}
             />

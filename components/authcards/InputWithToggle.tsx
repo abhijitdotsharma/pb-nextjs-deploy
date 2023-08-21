@@ -17,8 +17,8 @@ export default function InputWithToggle({
     setPasswordType("password");
   }
   return (
-    <div className="flex flex-row space-y-1.5">
-      <div>
+    <div className="flex flex-row justify-between space-y-1.5">
+      <div className="grow">
         <Input
           id="name"
           placeholder="Enter new password"
