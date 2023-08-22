@@ -1,7 +1,5 @@
 "use client";
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import React, { useState } from "react";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { ForgotPasswordCard } from "@/components/authcards/ForgotPasswordCard";

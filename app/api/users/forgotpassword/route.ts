@@ -1,9 +1,7 @@
 import { connect } from "@/lib/connect-db";
 import User from "@/model/User";
 import { NextRequest, NextResponse } from "next/server";
-import bcryptjs from "bcryptjs";
 import { sendEmail } from "@/lib/mail";
-import { redirect } from "next/navigation";
 
 connect();
 

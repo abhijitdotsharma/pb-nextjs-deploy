@@ -1,7 +1,6 @@
 "use client";
 
 import axios from "axios";
-import Link from "next/link";
 import bcryptjs from "bcryptjs";
 import React, { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";

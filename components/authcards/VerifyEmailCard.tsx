@@ -34,21 +34,6 @@ export function VerifyEmailCard({
     verifyUserEmail();
   }
 
-  function togglePassword() {
-    if (passwordType === "password") {
-      setPasswordType("text");
-      return;
-    }
-    setPasswordType("password");
-  }
-  function toggleConfirmPassword() {
-    if (confirmPasswordType === "password") {
-      setConfirmPasswordType("text");
-      return;
-    }
-    setConfirmPasswordType("password");
-  }
-
   return (
     <Card className="w-[350px]">
       <CardHeader>

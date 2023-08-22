@@ -1,13 +1,12 @@
 "use client";
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import React, { useState } from "react";
+// import { useRouter } from "next/navigation";
 import axios from "axios";
 import { LoginCard } from "@/components/authcards/LoginCard";
 import toast, { Toaster } from "react-hot-toast";
 
 export default function LoginPage() {
-  const router = useRouter();
+  // const router = useRouter();
   const [user, setUser] = React.useState({
     email: "",
     password: "",
