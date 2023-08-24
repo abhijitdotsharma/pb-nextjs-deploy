@@ -1,16 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
 import axios from "axios";
 import { Payment, columns } from "./columns";
 import { DataTable } from "./data-table";
 
+const BASE_URL =
+  process.env.NODE_ENV === "production"
+    ? "ec2 link here"
+    : "http://localhost:3000";
+
 async function getData(): Promise<Payment[]> {
-  // Fetch data from your API here.
+  try {
+    const res = await axios.get(`${BASE_URL}/api/orders/allorders`);
 
-  const res = await axios.get("http://localhost:3000/api/orders/allorders");
-
-  if (!res) throw Error("Error while getting orders");
-  return res.data.orders;
-  // return data;
+    console.log("res from orders - ", res);
+    return res.data.orders;
+  } catch (error) {
+    console.log("getData error - ", error);
+  }
 }
 
 export default async function OrdersPage() {

@@ -22,7 +22,7 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/", "/any", "/dashboard"],
+  matcher: ["/", "/any", "/dashboard", "/orders"],
 };
 /*
   // Ideally there should be a regex in matcher that catches all routes and is private except /verifyemail
